@@ -17,7 +17,7 @@ const style = {
 };
 
 export const Users = () => {
-  const [formUser, setFormUser] = useState({firstname: '', lastname: '', email:'',current_password:'',phone_number:''});
+  const [formUser, setFormUser] = useState({firstname: '', lastname: '', email:'',current_password:'',phone_number:'', password2: ''});
   const [open, setOpen] = useState(false);
   const url= "http://localhost:3100/api/v1/users"
   const urlPostUser= "http://localhost:3100/api/v1/auth/signin"
@@ -137,13 +137,13 @@ const handleSubmit = (e) => {
           onChange={handleInputChange}
         />
         <TextField
-            name="repeat_password"
+            name="password2"
             label="Repeat password"
             type="password"
             variant="outlined"
             fullWidth
             margin="normal"
-            value=" "
+            value={formUser.password2}
             onChange={handleInputChange}
         />
         </div>

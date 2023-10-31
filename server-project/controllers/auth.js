@@ -2,12 +2,14 @@ const { now } = require("mongoose");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/user");
 const { generateToken, refreshToken, decodeAccessToken } = require('../utils/jwt');
+const { Resend } = require("resend");
+const resend = new Resend("re_JngonMqv_Aob4FRHfSPuaCv4vEZSGULtK");
 
 // Crear la función para el registro - sigin
 
 const signin = async (req, res) => {
     const {firstname, lastname, email, current_password, phone_number} = req.body;
-    
+    console.log(email);
     
     try {
 
@@ -32,9 +34,22 @@ const signin = async (req, res) => {
             current_password: current_password_hash,
             phone_number
         });
+        
 
-
+        
         const userStorage = await newUser.save();
+        const data = await resend.emails.send({
+            from: "Acme <onboarding@resend.dev>",
+            to: [emailLowerCase],
+            subject: "Confirmación para activar tu cuenta",
+            html: `
+            <h1>¡Hola ${firstname}! Gracias por registrarte en nuestra página</h1>
+            <p>Para activar tu cuenta, por favor da click en el siguiente link</p>
+            <a href='http://localhost:3100/api/v1/auth/activate/${userStorage._id}'>Activar cuenta</a>
+            `,
+            
+        });
+        console.log(data);
         res.status(201).json(userStorage);
 
     } catch (err) {
