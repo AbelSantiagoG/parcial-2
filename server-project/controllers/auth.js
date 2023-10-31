@@ -6,7 +6,7 @@ const { generateToken, refreshToken, decodeAccessToken } = require('../utils/jwt
 // Crear la función para el registro - sigin
 
 const signin = async (req, res) => {
-    const {firstname, lastname, email, current_password} = req.body;
+    const {firstname, lastname, email, current_password, phone_number} = req.body;
     
     
     try {
@@ -21,17 +21,20 @@ const signin = async (req, res) => {
         }
 
         const emailLowerCase = email.toLowerCase();
-        const salt = await bcrypt.genSalt();
+        const salt = await bcrypt.genSalt(10);
         const current_password_hash = await bcrypt.hash(current_password, salt);
+        const userData = req.body;
+        console.log(emailLowerCase, current_password_hash);
         const newUser = new userModel({
             firstname,
             lastname,
             email: emailLowerCase,
-            current_password: current_password_hash
+            current_password: current_password_hash,
+            phone_number
         });
 
 
-        const userStorage = newUser.save();
+        const userStorage = await newUser.save();
         res.status(201).json(userStorage);
 
     } catch (err) {
@@ -46,6 +49,7 @@ const login = async (req, res) => {
             throw new Error('El email y la contraseña son obligatorios');
         }
         const emailLowerCase = email.toLowerCase();
+        console.log(emailLowerCase);
         const userStore = await userModel.findOne({ email: emailLowerCase }).exec();
         console.log(userStore);
         if (!userStore) {
@@ -74,7 +78,7 @@ const login = async (req, res) => {
 
 const getMe = async(req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.user._doc;
         const userFind = await userModel.findById(id);
         // Obtener token del usuario
 

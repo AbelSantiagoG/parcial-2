@@ -14,24 +14,17 @@ const UserSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    role: {
-        type: String,
-        default: "user"
-    },
-    active: {
-        type: Boolean,
-        default: true
-    },
     current_password: {
         type: String,
         required: true
     },
-    avatar: {
-        type: String
+    phone_number: {
+        type: String,
+        unique: true
     },
-    created_at: {
-        type: Date,
-        default: Date.now
+    active: {
+        type: Boolean,
+        default: false
     },
     updated_at: {
         type: Date,

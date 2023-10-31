@@ -5,7 +5,6 @@ const express = require("express");
 
 const app = express();
 const userRoutes = require('./routes/user');
-const serviceRoutes = require('./routes/service');
 const authRoutes = require('./routes/auth');
 const API_VERSION = 'api/v1';
 
@@ -19,7 +18,6 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.use(`/${API_VERSION}/users`, userRoutes);
-app.use(`/${API_VERSION}/services`, serviceRoutes);
 app.use(`/${API_VERSION}/auth`, authRoutes);
 // http://localhost:3100/api/v1/auth/
 

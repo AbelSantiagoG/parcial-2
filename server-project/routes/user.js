@@ -7,7 +7,7 @@ const express = require("express");
 const router = express.Router();
 
 
-router.post("/new-user", [md_auth.ensureAuth], userController.createUser);
+router.post("/new-user", userController.createUser);
 router.get("/", userController.getAllUsers);
 router.get("/:id", userController.getUserById);
 router.patch("/:id", userController.updateUserById);

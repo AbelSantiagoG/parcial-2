@@ -3,9 +3,11 @@ POST http://localhost:3100/api/v1/users/new-user HTTP/1.1
 Content-Type: application/json
 
 {
+    "firstname": "test",
     "lastname": "test",
-    "email": "e@test.com",
-    "current_password": "user123"
+    "email": "asdfg@test.com",
+    "current_password": "asd",
+    "phone_number": "3053575021"
 }
 
 ###
@@ -24,39 +26,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3100/api/v1/users/6511ef0bee6fe705d6f02126 HTTP/1.1
-
-
-###
-POST http://localhost:3100/api/v1/services/new-service HTTP/1.1
-Content-Type: application/json
-
-{
-    "service_name": "Servicio 1",
-    "service_description": "lorem ipsum"
-}
-
-
-###
-GET http://localhost:3100/api/v1/services HTTP/1.1
-
-
-###
-GET http://localhost:3100/api/v1/services/6515e1a252193b5b3f723e52 HTTP/1.1
-
-###
-PATCH http://localhost:3100/api/v1/services/6515e1a252193b5b3f723e52 HTTP/1.1
-Content-Type: application/json
-
-{
-    "firstname": "Test dos",
-    "email": "elpepe@gmail.com"
-}
-
-
-###
-DELETE http://localhost:3100/api/v1/services/6515e1a252193b5b3f723e52 HTTP/1.1
-
+DELETE http://localhost:3100/api/v1/users/6540676abd1efdd6e2556d43 HTTP/1.1
 
 
 
@@ -68,8 +38,9 @@ Content-Type: application/json
 {
     "firstname": "test",
     "lastname": "test",
-    "email": "asd@test.com",
-    "current_password": "asd"
+    "email": "1234@test.com",
+    "current_password": "1234",
+    "phone_number": "123"
 }
 
 
@@ -78,10 +49,10 @@ POST http://localhost:3100/api/v1/auth/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "asd@test.com",
-    "current_password": "asd"
+    "email": "1234@test.com",
+    "current_password": "14"
 }
 
 
 ###
-GET http://localhost:3100/api/v1/auth/get-me/6511efa8ee6fe705d6f02128 HTTP/1.1
+GET http://localhost:3100/api/v1/auth/get-me/65406841de540f9ce591437d HTTP/1.1
