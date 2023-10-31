@@ -50,28 +50,27 @@ export const Users = () => {
 
   
 
-  const createUser = (e)=>{
-    e.preventDefault();
-    if(formUser.current_password !==confirmPassword ){
-      return
-    }else{
+const handleSubmit = (e) => {
+  setFormUser(true)
+  e.preventDefault();
+  console.log(formUser)
       fetch(urlPostUser, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formUser),
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formUser),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Post creado:', data);
+          .then((response) => response.json())
+          .then((data) => {
+              console.log('Post creado:', data);
 
-        })
-        .catch((error) => {
-          console.error('Error al crear el post:', error);
-        });
-    }
-  }
+          })
+          .catch((error) => {
+              console.error('Error al crear el post:', error);
+          });
+  
+}
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -100,12 +99,12 @@ export const Users = () => {
           onChange={handleInputChange}
         />
         <TextField
-          name="lastName"
+          name="lastname"
           label="Lastname"
           variant="outlined"
           fullWidth
           margin="normal"
-          value = {formUser.lastName}
+          value = {formUser.lastname}
           onChange={handleInputChange}
         />
         <TextField
@@ -145,12 +144,12 @@ export const Users = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            value={formUser.password2}
+            value=" "
             onChange={handleInputChange}
         />
         </div>
         <div className="button-container">
-          <button class="Registrarse" onClick={createUser}>Registrarse</button>
+          <button class="Registrarse" onClick={handleSubmit}>Registrarse</button>
           <button class="Cancelar" >Cancelar</button>
         </div>
         <div className="final">
