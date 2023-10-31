@@ -1,0 +1,89 @@
+.body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .registro-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input[type="text"] {
+            margin: 1.5px;
+            width: 420px; 
+            height: 25px;
+            padding: 1px; 
+            border: 2px solid #5a5a5a; 
+            border-radius: 5px; 
+            font-size: 20px; 
+            color: #858383; 
+        }
+    
+
+        input[type="text"]:focus {
+            border-color: #2c1e6b; 
+            outline: none; 
+        }
+    }
+    .passwords-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        input[type="text"] {
+            margin: 5px;
+            width: 210px;  
+            height: 25px;
+            padding: 1px; 
+            border: 2px solid #5a5a5a; 
+            border-radius: 5px; 
+            font-size: 20px; 
+            color: #858383; 
+        }
+    
+
+        input[type="text"]:focus {
+            border-color: #2c1e6b; 
+            outline: none; 
+        }
+    }
+}
+
+/* .card-client {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    border: 1px solid #efefef;
+    box-shadow: 0px 0px 5px 0px #a2a2a2;
+    .title-card-client {
+        font-size: 16px;
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+    }
+    .image-card-client {
+        margin: 5px;
+        border-radius: 5px;
+        height: 400px;
+        width: 350px;
+        object-fit: cover;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+}
+
+.client-information {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    p {
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        margin: 5px;
+    }
+} */

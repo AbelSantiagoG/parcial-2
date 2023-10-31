@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { image } from "../../assets";
-import "./Clients.scss";
+import "./users.scss";
 import { Box, Chip, Grid, IconButton, Modal, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 const style = {
   position: "absolute",
@@ -17,7 +18,7 @@ const style = {
   display: "flex",
 };
 
-const clients = [
+const users = [
   {
     id: 1,
     clientName: "Client 1",
@@ -41,7 +42,7 @@ const clients = [
   },
 ];
 
-export const Clients = () => {
+export const Users = () => {
   // Manejo de estado abierto | cerrado de la modal
   const [open, setOpen] = useState(false);
   // Objeto que va contener la informaci贸n del cliente seleccionado
@@ -49,38 +50,22 @@ export const Clients = () => {
 
   const handleOpen = (clientId) => {
     // Buscar el cliente seleccionado
-    const client = clients.find((client) => client.id === clientId);
+    const client = users.find((client) => client.id === clientId);
     setOpen(true);
     console.log(client);
     setSelectedClient(client);
   };
 
   return (
-    <div className="clients-container">
-      <div className="clients-list">
-        {clients.map((client) => (
-          <div className="card-client">
-            <h3 className="title-card-client">{client.clientName}</h3>
-            <img
-              className="image-card-client"
-              onClick={() => handleOpen(client.id)}
-              src={client.avatar}
-              alt={client.clientName}
-            />
-            <div className="type-card-client">
-              {client.clientType === "Free" ? (
-                <Chip label={client.clientType} color="primary" />
-              ) : (
-                <Chip label={client.clientType} color="success" />
-              )}
-            </div>
-            <div>
-              <IconButton aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          </div>
-        ))}
+    <div className="body">
+      <div className="registro-container">
+        <input type="text" name="Nombres" value="Firstname"></input>
+        <input type="text" name="Apellidos" value="Lastname"></input>
+        <input type="text" name="Email" value="Email"></input>
+      </div>
+      <div className="passwords-container">
+        <input type="text" name="password" value="Password"></input>
+        <input type="text" name="repeat-password" value="Repeat password"></input>
       </div>
 
       <div className="client-selected">
