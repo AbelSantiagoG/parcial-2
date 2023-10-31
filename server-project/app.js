@@ -1,0 +1,27 @@
+const express = require("express");
+
+// app conectar por el puerto local el express
+// especificar los middleware a utilizar
+
+const app = express();
+const userRoutes = require('./routes/user');
+const serviceRoutes = require('./routes/service');
+const authRoutes = require('./routes/auth');
+const API_VERSION = 'api/v1';
+
+
+// Pruebas con extensión REST Client
+app.use(express.json());
+
+// Pruebas desde Postman
+app.use(express.urlencoded({extended: true}));
+
+
+
+app.use(`/${API_VERSION}/users`, userRoutes);
+app.use(`/${API_VERSION}/services`, serviceRoutes);
+app.use(`/${API_VERSION}/auth`, authRoutes);
+// http://localhost:3100/api/v1/auth/
+
+
+module.exports = app;
