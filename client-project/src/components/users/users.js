@@ -69,7 +69,6 @@ const handleSubmit = (e) => {
           .catch((error) => {
               console.error('Error al crear el post:', error);
           });
-  
 }
 
   const handleInputChange = (e) => {

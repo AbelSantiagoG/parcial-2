@@ -1,5 +1,31 @@
 const { now } = require("mongoose");
 const userModel = require("../models/user");
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'abelsantiago1000@gmail.com',
+        pass: 'hziu mzvx zajq pice',
+    },
+});
+
+function sendConfirmationEmail(email) {
+const mailOptions = {
+    from: 'abelsantiago1000@gmail.com',
+    to: email,
+    subject: 'Confirmar correo electrónico',
+    html:'PENE'
+};
+
+transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        console.error('Error al enviar el correo de confirmación:', error);
+    } else {
+        console.log('Correo de confirmación enviado:', info.response);
+    }
+    });
+}
 
 //Flecha
 const createUser = async (req, res) => {
@@ -10,6 +36,7 @@ const createUser = async (req, res) => {
         //console.log(user);
 
         await newUser.save();
+        sendConfirmationEmail(newUser.email)
         res.status(201).json(newUser);
 
     } catch (error) {
