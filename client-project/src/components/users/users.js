@@ -54,21 +54,25 @@ const handleSubmit = (e) => {
   setFormUser(true)
   e.preventDefault();
   console.log(formUser)
-      fetch(urlPostUser, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formUser),
-      })
-          .then((response) => response.json())
-          .then((data) => {
-              console.log('Post creado:', data);
+  if(formUser.password2 == formUser.current_password){fetch(urlPostUser, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formUser),
+})
+    .then((response) => response.json())
+    .then((data) => {
+        console.log('Post creado:', data);
 
-          })
-          .catch((error) => {
-              console.error('Error al crear el post:', error);
-          });
+    })
+    .catch((error) => {
+        console.error('Error al crear el post:', error);
+    });
+  }else{
+    console.log("No son iguales");
+  }
+      
 }
 
   const handleInputChange = (e) => {
