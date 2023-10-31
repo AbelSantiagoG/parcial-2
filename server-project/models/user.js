@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         unique: true
     },
-    active: {
+    status: {
         type: Boolean,
         default: false
     },

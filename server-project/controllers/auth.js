@@ -93,12 +93,26 @@ const login = async (req, res) => {
 
 const getMe = async(req, res) => {
     try {
-        const { id } = req.user._doc;
-        const userFind = await userModel.findById(id);
+        const { _id } = req.user._doc;
+        const userFind = await userModel.findById(_id);
         // Obtener token del usuario
 
-        
         res.status(200).json(userFind);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}
+
+const activate = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userFind = await userModel.findById(id);
+
+        userFind.status = true;
+        userStore = await userFind.save();
+
+        res.redirect(301, 'http://localhost:3000/login');
+
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
@@ -109,4 +123,5 @@ module.exports = {
     signin,
     login,
     getMe,
+    activate
 };
